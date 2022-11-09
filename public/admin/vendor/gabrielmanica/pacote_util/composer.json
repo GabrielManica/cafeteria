@@ -1,0 +1,35 @@
+{
+    "name":"gabrielmanica/pacote_util",
+    "description":"Classe uteis PHP",
+    "type":"library",
+    "license": "GPL-3.0-or-later",
+    "authors":[
+        {
+            "name":"Gabriel Mânica",
+            "email":"gabrielmanicaps@gmail.com"
+        }
+    ],
+    "autoload":{
+        "files":[
+            "src/Util.php",
+            "src/Whoops.php"
+        ],
+        "psr-4": {
+            "GX4\\Email\\": "src/",
+            "GX4\\EAN13Validator\\": "src/",
+            "GX4\\Ghost\\": "src/",
+            "GX4\\Jasper\\": "src/",
+            "GX4\\JasperServerIntegration\\": "src/",
+            "GX4\\S3\\": "src/",
+            "GX4\\Sweet\\": "src/",
+            "GX4\\Trait\\ExportTrait\\": "src/trait",
+            "GX4\\Trait\\FormTrait\\": "src/trait",
+            "GX4\\Trait\\ListTrait\\": "src/trait"
+        }
+    },
+    "require": {
+        "php": ">=7.0",
+        "phpmailer/phpmailer": "^6.0",
+        "filp/whoops": "^2.14"
+    }
+}

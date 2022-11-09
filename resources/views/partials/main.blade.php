@@ -1,0 +1,5 @@
+@extends('index')
+@extends('partials.header')
+@extends('partials.footer')
+@extends('partials.script')
+@extends('partials.nav')

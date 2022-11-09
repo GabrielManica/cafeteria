@@ -1,0 +1,82 @@
+[25-Sep-2022 21:04:09 America/Sao_Paulo] PHP Warning:  require_once(../util/trait/ListTrait.php): Failed to open stream: No such file or directory in /Applications/Apache/mydreamcloset/public/admin/init.php on line 37
+[25-Sep-2022 21:04:09 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Failed opening required '../util/trait/ListTrait.php' (include_path='/Applications/Apache/mydreamcloset/public/admin/vendor/adianti/pdfdesigner:/Applications/Apache/mydreamcloset/public/admin/vendor/pablodalloglio/fpdf:/Applications/Apache/mydreamcloset/public/admin/vendor/pablodalloglio/ole:/Applications/Apache/mydreamcloset/public/admin/vendor/pablodalloglio/spreadsheet_excel_writer:.:/opt/homebrew/Cellar/php/8.1.6/share/php/pear') in /Applications/Apache/mydreamcloset/public/admin/init.php:37
+Stack trace:
+#0 /Applications/Apache/mydreamcloset/public/admin/index.php(2): require_once()
+#1 {main}
+  thrown in /Applications/Apache/mydreamcloset/public/admin/init.php on line 37
+[28-Sep-2022 10:51:36 America/Sao_Paulo] PHP Fatal error:  Trait "Util\Trait\Gerais" not found in C:\xampp\htdocs\mydreamcloset\public\admin\app\control\cadastro\pessoa\PessoaList.php on line 3
+[28-Sep-2022 10:59:36 America/Sao_Paulo] PHP Fatal error:  Trait "Util\Trait\Gerais" not found in C:\xampp\htdocs\mydreamcloset\public\admin\app\control\cadastro\localidade\CidadeList.php on line 3
+[28-Sep-2022 11:04:52 America/Sao_Paulo] PHP Fatal error:  Trait "Util\Trait\Gerais" not found in C:\xampp\htdocs\mydreamcloset\public\admin\app\control\cadastro\produto\ProdutoList.php on line 5
+[28-Sep-2022 11:05:09 America/Sao_Paulo] PHP Fatal error:  Trait "Util\Trait\Gerais" not found in C:\xampp\htdocs\mydreamcloset\public\admin\app\control\cadastro\produto\configuracoes\LinhaForm.php on line 6
+[28-Sep-2022 11:18:13 America/Sao_Paulo] PHP Warning:  Undefined variable $column_nome in C:\xampp\htdocs\mydreamcloset\public\admin\app\control\site\BannerList.php on line 80
+[28-Sep-2022 11:26:21 America/Sao_Paulo] PHP Warning:  Undefined variable $nome in C:\xampp\htdocs\mydreamcloset\public\admin\app\control\site\BannerForm.php on line 69
+[28-Sep-2022 11:26:36 America/Sao_Paulo] PHP Warning:  Undefined array key "extension" in C:\xampp\htdocs\mydreamcloset\public\admin\lib\adianti\widget\form\TImageCropper.php on line 349
+[28-Sep-2022 11:29:50 America/Sao_Paulo] PHP Warning:  Undefined array key "extension" in C:\xampp\htdocs\mydreamcloset\public\admin\lib\adianti\widget\form\TImageCropper.php on line 349
+[28-Sep-2022 11:30:13 America/Sao_Paulo] PHP Warning:  Undefined property: stdClass::$foto in C:\xampp\htdocs\mydreamcloset\public\admin\lib\adianti\base\AdiantiFileSaveTrait.php on line 30
+[28-Sep-2022 11:30:13 America/Sao_Paulo] PHP Deprecated:  urldecode(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\mydreamcloset\public\admin\lib\adianti\base\AdiantiFileSaveTrait.php on line 30
+[28-Sep-2022 11:31:12 America/Sao_Paulo] PHP Warning:  Undefined property: stdClass::$banner in C:\xampp\htdocs\mydreamcloset\public\admin\lib\adianti\base\AdiantiFileSaveTrait.php on line 30
+[28-Sep-2022 11:31:12 America/Sao_Paulo] PHP Deprecated:  urldecode(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\mydreamcloset\public\admin\lib\adianti\base\AdiantiFileSaveTrait.php on line 30
+[28-Sep-2022 11:32:27 America/Sao_Paulo] PHP Warning:  Undefined array key "extension" in C:\xampp\htdocs\mydreamcloset\public\admin\lib\adianti\widget\form\TImageCropper.php on line 349
+[28-Sep-2022 11:32:57 America/Sao_Paulo] PHP Warning:  Undefined array key "extension" in C:\xampp\htdocs\mydreamcloset\public\admin\lib\adianti\widget\form\TImageCropper.php on line 349
+[06-Oct-2022 08:41:22 America/Sao_Paulo] PHP Warning:  Undefined array key "valor" in C:\xampp\htdocs\mydreamcloset\public\admin\app\control\consulta\ConsultaValoresForm.php on line 78
+[06-Oct-2022 08:41:22 America/Sao_Paulo] PHP Warning:  Undefined array key "valor" in C:\xampp\htdocs\mydreamcloset\public\admin\app\control\consulta\ConsultaValoresForm.php on line 79
+[06-Oct-2022 08:41:22 America/Sao_Paulo] PHP Warning:  Undefined array key "valor" in C:\xampp\htdocs\mydreamcloset\public\admin\app\control\consulta\ConsultaValoresForm.php on line 80
+[06-Oct-2022 08:41:22 America/Sao_Paulo] PHP Warning:  Undefined array key "valor" in C:\xampp\htdocs\mydreamcloset\public\admin\app\control\consulta\ConsultaValoresForm.php on line 81
+[06-Oct-2022 08:41:22 America/Sao_Paulo] PHP Deprecated:  str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in C:\xampp\htdocs\mydreamcloset\public\admin\app\control\consulta\ConsultaValoresForm.php on line 81
+[06-Oct-2022 08:41:34 America/Sao_Paulo] PHP Warning:  Undefined array key "valor" in C:\xampp\htdocs\mydreamcloset\public\admin\app\control\consulta\ConsultaValoresForm.php on line 78
+[06-Oct-2022 08:41:34 America/Sao_Paulo] PHP Warning:  Undefined array key "valor" in C:\xampp\htdocs\mydreamcloset\public\admin\app\control\consulta\ConsultaValoresForm.php on line 79
+[06-Oct-2022 08:41:34 America/Sao_Paulo] PHP Warning:  Undefined array key "valor" in C:\xampp\htdocs\mydreamcloset\public\admin\app\control\consulta\ConsultaValoresForm.php on line 80
+[06-Oct-2022 08:41:34 America/Sao_Paulo] PHP Warning:  Undefined array key "valor" in C:\xampp\htdocs\mydreamcloset\public\admin\app\control\consulta\ConsultaValoresForm.php on line 81
+[06-Oct-2022 08:41:34 America/Sao_Paulo] PHP Deprecated:  str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in C:\xampp\htdocs\mydreamcloset\public\admin\app\control\consulta\ConsultaValoresForm.php on line 81
+[06-Oct-2022 08:43:04 America/Sao_Paulo] PHP Warning:  Undefined array key "valor" in C:\xampp\htdocs\mydreamcloset\public\admin\app\control\consulta\ConsultaValoresForm.php on line 78
+[06-Oct-2022 08:43:04 America/Sao_Paulo] PHP Warning:  Undefined array key "valor" in C:\xampp\htdocs\mydreamcloset\public\admin\app\control\consulta\ConsultaValoresForm.php on line 79
+[06-Oct-2022 08:43:04 America/Sao_Paulo] PHP Warning:  Undefined array key "valor" in C:\xampp\htdocs\mydreamcloset\public\admin\app\control\consulta\ConsultaValoresForm.php on line 80
+[06-Oct-2022 08:43:04 America/Sao_Paulo] PHP Warning:  Undefined array key "valor" in C:\xampp\htdocs\mydreamcloset\public\admin\app\control\consulta\ConsultaValoresForm.php on line 82
+[06-Oct-2022 08:43:04 America/Sao_Paulo] PHP Deprecated:  str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in C:\xampp\htdocs\mydreamcloset\public\admin\app\control\consulta\ConsultaValoresForm.php on line 82
+[06-Oct-2022 08:43:34 America/Sao_Paulo] PHP Warning:  A non-numeric value encountered in C:\xampp\htdocs\mydreamcloset\public\admin\app\control\consulta\ConsultaValoresForm.php on line 78
+[06-Oct-2022 08:43:34 America/Sao_Paulo] PHP Warning:  A non-numeric value encountered in C:\xampp\htdocs\mydreamcloset\public\admin\app\control\consulta\ConsultaValoresForm.php on line 79
+[06-Oct-2022 08:43:34 America/Sao_Paulo] PHP Warning:  A non-numeric value encountered in C:\xampp\htdocs\mydreamcloset\public\admin\app\control\consulta\ConsultaValoresForm.php on line 80
+<<<<<<< HEAD
+[10-Oct-2022 08:19:07 America/Sao_Paulo] PHP Fatal error:  Trait "Util\Trait\Gerais" not found in C:\Apache24\htdocs\mydreamcloset\public\admin\app\control\pedido_entrada\PedidoEntradaForm.php on line 6
+[10-Oct-2022 08:24:01 America/Sao_Paulo] PHP Warning:  Undefined variable $column_nome in C:\Apache24\htdocs\mydreamcloset\public\admin\app\control\pedido_entrada\PedidoEntradaList.php on line 77
+=======
+[09-Oct-2022 15:43:19 America/Sao_Paulo] PHP Warning:  Undefined array key "valor" in /Applications/Apache/mydreamcloset/public/admin/app/control/cadastro/produto/ProdutoForm.php on line 194
+[09-Oct-2022 15:43:19 America/Sao_Paulo] PHP Deprecated:  str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in /Applications/Apache/mydreamcloset/public/admin/app/control/cadastro/produto/ProdutoForm.php on line 194
+[09-Oct-2022 15:44:02 America/Sao_Paulo] PHP Warning:  Undefined array key "valor_compra" in /Applications/Apache/mydreamcloset/public/admin/app/control/cadastro/produto/ProdutoForm.php on line 194
+[09-Oct-2022 15:44:02 America/Sao_Paulo] PHP Deprecated:  str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in /Applications/Apache/mydreamcloset/public/admin/app/control/cadastro/produto/ProdutoForm.php on line 194
+>>>>>>> bdec07b9c24dcbea3b1ab927b70569fe2444bf33
+[10-Oct-2022 09:55:11 America/Sao_Paulo] PHP Warning:  Undefined variable $nome in C:\Apache24\htdocs\mydreamcloset\public\admin\app\control\pedido_entrada\PedidoEntradaForm.php on line 37
+[10-Oct-2022 09:56:04 America/Sao_Paulo] PHP Warning:  Undefined variable $nome in C:\Apache24\htdocs\mydreamcloset\public\admin\app\control\pedido_entrada\PedidoEntradaForm.php on line 50
+[10-Oct-2022 11:55:09 America/Sao_Paulo] PHP Warning:  foreach() argument must be of type array|object, null given in C:\Apache24\htdocs\mydreamcloset\public\admin\lib\adianti\wrapper\BootstrapFormBuilder.php on line 761
+[10-Oct-2022 11:55:31 America/Sao_Paulo] PHP Warning:  foreach() argument must be of type array|object, null given in C:\Apache24\htdocs\mydreamcloset\public\admin\lib\adianti\wrapper\BootstrapFormBuilder.php on line 761
+[10-Oct-2022 13:50:28 America/Sao_Paulo] PHP Deprecated:  number_format(): Passing null to parameter #1 ($num) of type float is deprecated in C:\Apache24\htdocs\mydreamcloset\public\admin\vendor\gabrielmanica\pacote_util\src\Util.php on line 142
+[10-Oct-2022 13:51:24 America/Sao_Paulo] PHP Deprecated:  number_format(): Passing null to parameter #1 ($num) of type float is deprecated in C:\Apache24\htdocs\mydreamcloset\public\admin\vendor\gabrielmanica\pacote_util\src\Util.php on line 142
+[10-Oct-2022 13:58:50 America/Sao_Paulo] PHP Deprecated:  number_format(): Passing null to parameter #1 ($num) of type float is deprecated in C:\Apache24\htdocs\mydreamcloset\public\admin\vendor\gabrielmanica\pacote_util\src\Util.php on line 142
+[10-Oct-2022 13:59:43 America/Sao_Paulo] PHP Deprecated:  number_format(): Passing null to parameter #1 ($num) of type float is deprecated in C:\Apache24\htdocs\mydreamcloset\public\admin\vendor\gabrielmanica\pacote_util\src\Util.php on line 142
+[10-Oct-2022 14:43:37 America/Sao_Paulo] PHP Warning:  Undefined array key "pedido_id" in C:\Apache24\htdocs\mydreamcloset\public\admin\app\control\pedido_entrada\PedidoEntradaForm.php on line 256
+[10-Oct-2022 15:16:52 America/Sao_Paulo] PHP Warning:  Undefined variable $action_edit in C:\Apache24\htdocs\mydreamcloset\public\admin\app\control\pedido_entrada\PedidoEntradaForm.php on line 221
+[10-Oct-2022 15:33:32 America/Sao_Paulo] PHP Warning:  Undefined array key "pedido_id" in C:\Apache24\htdocs\mydreamcloset\public\admin\app\control\pedido_entrada\PedidoEntradaForm.php on line 230
+[10-Oct-2022 15:33:32 America/Sao_Paulo] PHP Deprecated:  substr(): Passing null to parameter #1 ($string) of type string is deprecated in C:\Apache24\htdocs\mydreamcloset\public\admin\lib\adianti\control\TAction.php on line 61
+[10-Oct-2022 15:33:32 America/Sao_Paulo] PHP Deprecated:  preg_match_all(): Passing null to parameter #2 ($subject) of type string is deprecated in C:\Apache24\htdocs\mydreamcloset\public\admin\lib\adianti\control\TAction.php on line 206
+[10-Oct-2022 15:33:32 America/Sao_Paulo] PHP Deprecated:  preg_match_all(): Passing null to parameter #2 ($subject) of type string is deprecated in C:\Apache24\htdocs\mydreamcloset\public\admin\lib\adianti\control\TAction.php on line 206
+[10-Oct-2022 15:33:32 America/Sao_Paulo] PHP Deprecated:  preg_match_all(): Passing null to parameter #2 ($subject) of type string is deprecated in C:\Apache24\htdocs\mydreamcloset\public\admin\lib\adianti\control\TAction.php on line 206
+[10-Oct-2022 15:45:33 America/Sao_Paulo] PHP Warning:  Undefined array key "key" in C:\Apache24\htdocs\mydreamcloset\public\admin\app\control\pedido_entrada\PedidoEntradaForm.php on line 230
+[10-Oct-2022 15:45:33 America/Sao_Paulo] PHP Deprecated:  substr(): Passing null to parameter #1 ($string) of type string is deprecated in C:\Apache24\htdocs\mydreamcloset\public\admin\lib\adianti\control\TAction.php on line 61
+[10-Oct-2022 15:46:37 America/Sao_Paulo] PHP Warning:  Undefined array key "key" in C:\Apache24\htdocs\mydreamcloset\public\admin\app\control\pedido_entrada\PedidoEntradaForm.php on line 230
+[10-Oct-2022 15:46:37 America/Sao_Paulo] PHP Deprecated:  substr(): Passing null to parameter #1 ($string) of type string is deprecated in C:\Apache24\htdocs\mydreamcloset\public\admin\lib\adianti\control\TAction.php on line 61
+[10-Oct-2022 16:05:38 America/Sao_Paulo] PHP Warning:  Attempt to read property "nome" on null in C:\Apache24\htdocs\mydreamcloset\public\admin\app\model\cadastro\pessoa\Pessoa.php on line 66
+[10-Oct-2022 16:05:38 America/Sao_Paulo] PHP Warning:  Attempt to read property "nome" on null in C:\Apache24\htdocs\mydreamcloset\public\admin\app\model\cadastro\pessoa\Pessoa.php on line 66
+[10-Oct-2022 16:49:41 America/Sao_Paulo] PHP Warning:  A non-numeric value encountered in C:\Apache24\htdocs\mydreamcloset\public\admin\app\control\pedido_entrada\PedidoEntradaForm.php on line 339
+[10-Oct-2022 16:49:41 America/Sao_Paulo] PHP Warning:  A non-numeric value encountered in C:\Apache24\htdocs\mydreamcloset\public\admin\app\control\pedido_entrada\PedidoEntradaForm.php on line 340
+[10-Oct-2022 16:50:48 America/Sao_Paulo] PHP Warning:  A non-numeric value encountered in C:\Apache24\htdocs\mydreamcloset\public\admin\app\control\pedido_saida\PedidoSaidaForm.php on line 356
+[10-Oct-2022 16:50:48 America/Sao_Paulo] PHP Warning:  A non-numeric value encountered in C:\Apache24\htdocs\mydreamcloset\public\admin\app\control\pedido_saida\PedidoSaidaForm.php on line 357
+[10-Oct-2022 16:53:28 America/Sao_Paulo] PHP Warning:  A non-numeric value encountered in C:\Apache24\htdocs\mydreamcloset\public\admin\app\control\pedido_entrada\PedidoEntradaForm.php on line 339
+[10-Oct-2022 16:53:28 America/Sao_Paulo] PHP Warning:  A non-numeric value encountered in C:\Apache24\htdocs\mydreamcloset\public\admin\app\control\pedido_entrada\PedidoEntradaForm.php on line 340
+[10-Oct-2022 17:17:53 America/Sao_Paulo] PHP Warning:  Undefined variable $action_delete in C:\Apache24\htdocs\mydreamcloset\public\admin\app\control\cadastro\produto\configuracoes\LinhaList.php on line 105
+[11-Oct-2022 10:26:57 America/Sao_Paulo] PHP Warning:  A non-numeric value encountered in C:\Apache24\htdocs\mydreamcloset\public\admin\app\control\pedido_entrada\PedidoEntradaForm.php on line 340
+[11-Oct-2022 10:26:57 America/Sao_Paulo] PHP Warning:  A non-numeric value encountered in C:\Apache24\htdocs\mydreamcloset\public\admin\app\control\pedido_entrada\PedidoEntradaForm.php on line 341
+[13-Oct-2022 14:55:27 America/Sao_Paulo] PHP Warning:  Undefined variable $button_limpar_filtros in C:\Apache24\htdocs\mydreamcloset\public\admin\app\control\consulta\ConsultaAniversariantesList.php on line 158
+[13-Oct-2022 14:55:27 America/Sao_Paulo] PHP Warning:  Undefined variable $button_atualizar in C:\Apache24\htdocs\mydreamcloset\public\admin\app\control\consulta\ConsultaAniversariantesList.php on line 159
+[13-Oct-2022 14:55:49 America/Sao_Paulo] PHP Warning:  Undefined property: stdClass::$produto_id in C:\Apache24\htdocs\mydreamcloset\public\admin\app\control\consulta\ConsultaAniversariantesList.php on line 187
+[13-Oct-2022 17:09:43 America/Sao_Paulo] PHP Warning:  Undefined variable $column_markup in C:\Apache24\htdocs\mydreamcloset\public\admin\app\control\consulta\ConsultaEstoqueList.php on line 114
+[13-Oct-2022 17:10:39 America/Sao_Paulo] PHP Warning:  Undefined variable $column_markup in C:\Apache24\htdocs\mydreamcloset\public\admin\app\control\consulta\ConsultaEstoqueList.php on line 114
