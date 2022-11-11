@@ -14,11 +14,11 @@ class PessoaForm extends TPage
 {
     protected $form;
     private static $database = 'erp';
-    private static $activeRecord = 'Pessoa';
+    private static $activeRecord = 'Cliente';
     private static $primaryKey = 'id';
     private static $formName = 'form_Pessoa';
     private $showMethods = ['onEdit', 'onSave', 'onDelete'];
-    private static $formTitle = '<i class="fas fa-user fa-fw nav-icon"></i> Pessoa';
+    private static $formTitle = '<i class="fas fa-user fa-fw nav-icon"></i> Cliente';
 
     use FormTrait;
 
@@ -31,39 +31,16 @@ class PessoaForm extends TPage
         $this->form->setFormTitle( self::$formTitle );
         $this->form->setFieldSizes('100%');
 
-        $id               = new TEntry('id');
-        $nome             = new TEntry('nome');
-        $documento        = new TEntry('documento');
-        $login            = new TEntry('login');
-        $email            = new TEntry('email');
-        $senha            = new TEntry('senha');
-        $observacao       = new TText('observacao');
-        $ativo            = new TCheckButton('ativo');
-        $data_nascimento  = new TDate('data_nascimento');
-        $data_desativacao = new TEntry('data_desativacao');
-        $grupo_pessoa_id  = new TDBCombo('grupo_pessoa_id', 'erp', 'GrupoPessoa', 'id', 'nome', 'nome asc');
-        $categoria        = new TDBCheckGroup('categoria', 'erp', 'CategoriaPessoa', 'id', '{nome}','nome asc'  );
-
-        $categoria->setLayout('horizontal');
-        $categoria->setUseButton();
-        // $categoria->setBreakItems(4);
-        // $categoria->setSize('100%');
+        $id        = new TEntry('id');
+        $nome      = new TEntry('nome');
+        $documento = new TEntry('documento');
+        $celular   = new TEntry('celular');
 
         $id->setEditable(FALSE);
-        $data_desativacao->setEditable(FALSE);
 
         $id->forceUpperCase();
         $nome->forceUpperCase();
         $documento->cpf_cnpj = 'true';
-
-        $ativo->setIndexValue('S');
-        $ativo->setValue('S');
-        $ativo->setUseSwitch(true, 'blue');
-
-        $grupo_pessoa_id->enableSearch();
-
-        $data_nascimento->setDatabaseMask('yyyy-mm-dd');
-        $data_nascimento->setMask('dd/mm/yyyy');
 
         $this->form->appendPage("Dados Cadastrais");
 
@@ -86,34 +63,13 @@ class PessoaForm extends TPage
         ];
 
         $row2 = $this->form->addFields(
-            [ new TLabel('Ativo', 'red'),      $ativo            ],
-            [ new TLabel('Data Desativação'),  $data_desativacao ],
-            [ new TLabel('Grupo', 'red'),      $grupo_pessoa_id  ],
-            [ new TLabel('Data Nascimento'),   $data_nascimento  ],
+            [ new TLabel('Celular', 'red'),      $celular            ],
         );
 
         $row2->layout = [
-            'col-6  col-sm-1',
-            'col-6  col-sm-2',
-            'col-12 col-sm-3',
-            'col-12 col-sm-2',
+            'col-6  col-sm-6',
         ];
 
-        $row3 = $this->form->addFields(
-            [ new TLabel('Categoria Pessoa'), $categoria ],
-        );
-
-        $row3->layout = [
-            'col-12  col-sm-12',
-        ];
-
-        $row3 = $this->form->addFields(
-            [ new TLabel('Observação Pessoa'), $observacao ],
-        );
-
-        $row3->layout = [
-            'col-12  col-sm-12',
-        ];
 
         // $this->form->addFields( [new TFormSeparator('<b>Dados de Login</b>') ] );
         // $row2 = $this->form->addFields(
@@ -128,8 +84,6 @@ class PessoaForm extends TPage
         //     'col-6  col-sm-3',
         // ];
 
-        $observacao->setSize('100%', 100);
-
 
         if (isset($param['key']))
         {
@@ -141,16 +95,6 @@ class PessoaForm extends TPage
 
             $row_page_endereco = $this->form->addFields([$page_endereco]);
             $row_page_endereco->layout = ['col-12'];
-
-            $this->form->appendPage("Contatos");
-            $page_contato = new TElement('div');
-            $page_contato->id = 'page_contato';
-
-            $page_contato->style = 'width: 100%';
-
-            $row_page_contato = $this->form->addFields([$page_contato]);
-            $row_page_contato->layout = ['col-12'];
-
         }
 
         if ($this::isMobile())
@@ -177,11 +121,6 @@ class PessoaForm extends TPage
                     __adianti_load_page('index.php?class=PessoaEnderecoForm&method=onShow&target_container=page_endereco&register_state=false&pessoa_id={$param['key']}');
             ");
         }
-        else if($param['current_page'] == 2) {
-            TScript::create("
-                    __adianti_load_page('index.php?class=PessoaContatoForm&method=onShow&target_container=page_contato&register_state=false&pessoa_id={$param['key']}');
-            ");
-        }
     }
 
     public function onEdit( $param )
@@ -194,9 +133,6 @@ class PessoaForm extends TPage
                 TTransaction::open(self::$database);
 
                 $object        = new self::$activeRecord($key);
-                $object->data_desativacao = _set_format_date($object->data_desativacao);
-
-                $object->categoria = PessoaCategoria::where('pessoa_id', '=', $object->id)->getIndexedArray('categoria_pessoa_id', 'categoria_pessoa_id');
 
                 $this->form->setData($object);
                 TTransaction::close();
@@ -260,36 +196,6 @@ class PessoaForm extends TPage
             $this->form->validate();
             $data = $this->form->getData();
 
-            if($data->ativo == '')
-            {
-                $data->ativo = 'N';
-            }
-
-            unset($data->data_desativacao);
-
-            $data->login = explode(' ', $data->nome)[0];
-
-            if($data->id != '')
-            {
-                $count = Pessoa::where('login', 'ilike', "%{$data->login}%")->where('id','not in', "NOESC:({$data->id})")->count();
-            }
-            else
-            {
-                $count = Pessoa::where('login', 'ilike', "%{$data->login}%")->count();
-            }
-
-            if($count>0)
-            {
-                $data->login .= $count;
-            }
-
-            if (!$data->categoria)
-            {
-                throw new Exception('Categoria da Pessoa deve ser informado!');
-            }
-
-            $data->senha = substr($data->documento, 0, 4);
-            $data->email = 'teste@teste.com.br';
 
             $object = new self::$activeRecord;
             $object->fromArray( (array) $data );
@@ -300,21 +206,6 @@ class PessoaForm extends TPage
             $this->form->setData($data);
 
             $key = $data->id;
-
-            $repository = PessoaCategoria::where('pessoa_id', '=', $object->id);
-            $repository->delete();
-
-            if ($data->categoria)
-            {
-                foreach ($data->categoria as $categoria)
-                {
-                    $pessoa_categoria = new PessoaCategoria;
-
-                    $pessoa_categoria->categoria_pessoa_id = $categoria;
-                    $pessoa_categoria->pessoa_id           = $object->id;
-                    $pessoa_categoria->store();
-                }
-            }
 
             if ($this::isMobile())
             {

@@ -41,9 +41,7 @@ class PedidoSaidaList extends TPage
         $id->setSize('100%');
         $id->forceUpperCase();
 
-        $criteria = new TCriteria;
-        $criteria->add(new TFilter('id','in','(select pessoa_id from pessoa_categoria where categoria_pessoa_id = 4)'));
-        $pessoa_id = new TDBCombo('pessoa_id', 'erp', 'Pessoa', 'id', 'nome','nome asc', $criteria );
+        $pessoa_id = new TDBCombo('cliente_id', 'erp', 'Cliente', 'id', 'nome','nome asc',  );
         $pessoa_id->setSize('100%');
         $pessoa_id->enableSearch();
 
@@ -104,37 +102,18 @@ class PedidoSaidaList extends TPage
 
         // creates the datagrid columns
         $column_id               = new TDataGridColumn('id', 'ID', 'center');
-        $column_pessoa           = new TDataGridColumn('{pessoa->nome}', 'Cliente', 'left');
+        $column_pessoa           = new TDataGridColumn('{cliente->nome}', 'Cliente', 'left');
         $column_data_pedido      = new TDataGridColumn('data_pedido', 'Data', 'center');
-        $column_forma_pagamento  = new TDataGridColumn('{forma_pagamento->descricao}', 'Forma Pagamento', 'left');
-        $column_total_quantidade = new TDataGridColumn('total_quantidade', 'Quantidade', 'center');
-        $column_total_bruto      = new TDataGridColumn('total_bruto', 'Bruto', 'center');
-        $column_total_desconto   = new TDataGridColumn('total_desconto', 'Desconto', 'center');
-        $column_total_liquido    = new TDataGridColumn('total_liquido', 'Líquido', 'center');
+        $column_total_desconto   = new TDataGridColumn('total_pedido', 'Total', 'center');
 
         $this->datagrid->addColumn( $column_id );
         $this->datagrid->addColumn( $column_pessoa );
         $this->datagrid->addColumn( $column_data_pedido );
-        $this->datagrid->addColumn( $column_forma_pagamento );
-        $this->datagrid->addColumn( $column_total_quantidade );
-        $this->datagrid->addColumn( $column_total_bruto );
         $this->datagrid->addColumn( $column_total_desconto );
-        $this->datagrid->addColumn( $column_total_liquido );
 
-        $column_total_bruto->setTransformer( function($value, $object, $row) {
-            return _formata_numero($value, true);
-        });
 
         $column_total_desconto->setTransformer( function($value, $object, $row) {
             return _formata_numero($value, true);
-        });
-
-        $column_total_liquido->setTransformer( function($value, $object, $row) {
-            return _formata_numero($value, true);
-        });
-
-        $column_total_quantidade->setTransformer( function($value, $object, $row) {
-            return _formata_numero($value);
         });
 
         $column_data_pedido->setTransformer( function($value, $object, $row) {
@@ -143,7 +122,7 @@ class PedidoSaidaList extends TPage
 
         $column_id->setAction(new TAction([$this, 'onReload']), ['order' => 'id']);
 
-        $action_edit   = new TDataGridAction(['PedidoSaidaForm', 'onEdit'],   ['key' => '{id}', 'pessoa_id' => '{pessoa_id}'] );
+        $action_edit   = new TDataGridAction(['PedidoSaidaForm', 'onEdit'],   ['key' => '{id}'] );
         $action_delete = new TDataGridAction([$this, 'onDelete'],   ['key' => '{id}'] );
 
         $this->datagrid->addAction($action_edit, 'Edit',   'far:edit blue fa-fw');
@@ -244,7 +223,7 @@ class PedidoSaidaList extends TPage
         if (isset($data->pessoa_id) AND ( (is_scalar($data->pessoa_id) AND $data->pessoa_id !== '') OR (is_array($data->pessoa_id) AND (!empty($data->pessoa_id)) )) )
         {
 
-            $filters[] = new TFilter('pessoa_id', '=', "{$data->pessoa_id}");// create the filter
+            $filters[] = new TFilter('cliente_id', '=', "{$data->pessoa_id}");// create the filter
         }
 
         if (isset($data->id) AND ( (is_scalar($data->id) AND $data->id !== '') OR (is_array($data->id) AND (!empty($data->id)) )) )
@@ -298,8 +277,6 @@ class PedidoSaidaList extends TPage
                     $criteria->add($filter);
                 }
             }
-
-            $criteria->add(new TFilter('tipo_pedido', '=', "S"));
 
             if(!empty($this->btnShowCurtainFilters) && empty($this->btnShowCurtainFiltersAdjusted))
             {

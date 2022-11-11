@@ -46,48 +46,11 @@ class ProdutoList extends TPage
         $descricao->setSize('100%');
         $descricao->forceUpperCase();
 
-        $criteria = new TCriteria;
-        $criteria->add(new TFilter('id','in','(select pessoa_id from pessoa_categoria where categoria_pessoa_id = 5)'));
-        $pessoa_id = new TDBCombo('pessoa_id', 'erp', 'Pessoa', 'id', 'nome','nome asc', $criteria );
-        $pessoa_id->setSize('100%');
-        $pessoa_id->enableSearch();
-
-        $fabricante_id = new TDBCombo('fabricante_id', 'erp', 'Fabricante', 'id', 'nome','nome asc' );
-        $fabricante_id->setSize('100%');
-        $fabricante_id->enableSearch();
-
-        $linha_id = new TDBCombo('linha_id', 'erp', 'Linha', 'id', 'nome','nome asc');;
-        $linha_id->setSize('100%');
-        $linha_id->enableSearch();
-        $linha_id->setChangeAction(new TAction([$this,'onChangeLinha'],['static'=>'1']));
-
-        $sub_linha_id = new TCombo('sub_linha_id');
-        $sub_linha_id->setSize('100%');
-        $sub_linha_id->enableSearch();
-
         $row = $this->form->addFields(
-            [new TLabel('Fornecedor'), $pessoa_id],
             [new TLabel('Descrição'), $descricao],
             [new TLabel('Produto ID'), $id],
         );
 
-        $row->layout = [
-            'col-sm-6',
-            'col-sm-4',
-            'col-sm-2',
-        ];
-
-        $row = $this->form->addFields(
-            [new TLabel('Fabricante'), $fabricante_id],
-            [new TLabel('Linha'), $linha_id],
-            [new TLabel('Sub Linha'), $sub_linha_id],
-        );
-
-        $row->layout = [
-            'col-sm-4',
-            'col-sm-4',
-            'col-sm-4',
-        ];
 
         $this->form->setData( TSession::getValue(__CLASS__.'List_filter_data') );
 
@@ -113,61 +76,21 @@ class ProdutoList extends TPage
         // creates the datagrid columns
         $column_id                               = new TDataGridColumn('id', 'ID', 'center');
         $column_nome                             = new TDataGridColumn('nome', 'Descrição', 'left');
-        $column_fornecedor                       = new TDataGridColumn('{fornecedor->nome}', 'Fornecedor', 'left');
-        $column_preco_custo                      = new TDataGridColumn('preco_custo', 'Preço Custo', 'center');
-        $column_markup                           = new TDataGridColumn('markup', 'Markup %', 'center');
-        $column_preco_venda                      = new TDataGridColumn('preco_venda', 'Preço Venda', 'center');
-        $column_preco_venda_prazo                = new TDataGridColumn('preco_venda_prazo', 'Preço Venda Prazo', 'center');
-        $column_preco_venda_pronta_entrega       = new TDataGridColumn('preco_venda_pronta_entrega', 'Preço Venda Entr.', 'center');
-        $column_preco_venda_pronta_entrega_prazo = new TDataGridColumn('preco_venda_pronta_entrega_prazo', 'Preço Venda Entr. Prazo', 'center');
-        $column_estoque                          = new TDataGridColumn('estoque', 'Qtd. Estoque', 'center');
+        $column_preco_venda                      = new TDataGridColumn('valor', 'Valor', 'center');
 
         $this->datagrid->addColumn( $column_id );
         $this->datagrid->addColumn( $column_nome );
-        $this->datagrid->addColumn( $column_fornecedor );
-        $this->datagrid->addColumn( $column_estoque );
-        $this->datagrid->addColumn( $column_preco_custo );
-        $this->datagrid->addColumn( $column_markup );
         $this->datagrid->addColumn( $column_preco_venda );
-        $this->datagrid->addColumn( $column_preco_venda_prazo );
-        $this->datagrid->addColumn( $column_preco_venda_pronta_entrega );
-        $this->datagrid->addColumn( $column_preco_venda_pronta_entrega_prazo );
-
-        $column_preco_custo->setTransformer( function($value, $object, $row) {
-            return _formata_numero($value, true);
-        });
 
         $column_preco_venda->setTransformer( function($value, $object, $row) {
             return _formata_numero($value, true);
         });
 
-        $column_preco_venda_prazo->setTransformer( function($value, $object, $row) {
-            return _formata_numero($value, true);
-        });
-
-        $column_preco_venda_pronta_entrega->setTransformer( function($value, $object, $row) {
-            return _formata_numero($value, true);
-        });
-
-        $column_preco_venda_pronta_entrega_prazo->setTransformer( function($value, $object, $row) {
-            return _formata_numero($value, true);
-        });
-
-        $column_markup->setTransformer( function($value, $object, $row) {
-            return _formata_numero($value);
-        });
 
         $column_id->setAction(new TAction([$this, 'onReload']), ['order' => 'id']);
         $column_nome->setAction(new TAction([$this, 'onReload']), ['order' => 'nome']);
-        $column_fornecedor->setAction(new TAction([$this, 'onReload']), ['order' => 'fornecedor->nome']);
-        $column_markup->setAction(new TAction([$this, 'onReload']), ['order' => 'markup']);
-        $column_preco_custo->setAction(new TAction([$this, 'onReload']), ['order' => 'preco_custo']);
         $column_preco_venda->setAction(new TAction([$this, 'onReload']), ['order' => 'preco_venda']);
-        $column_preco_venda_prazo->setAction(new TAction([$this, 'onReload']), ['order' => 'preco_venda_prazo']);
-        $column_preco_venda_pronta_entrega->setAction(new TAction([$this, 'onReload']), ['order' => 'preco_venda_pronta_entrega']);
-        $column_preco_venda_pronta_entrega_prazo->setAction(new TAction([$this, 'onReload']), ['order' => 'preco_venda_pronta_entrega_prazo']);
-        $column_estoque->setAction(new TAction([$this, 'onReload']), ['order' => 'estoque']);
-
+        
         $action_edit   = new TDataGridAction(['ProdutoForm', 'onEdit'],   ['key' => '{id}'] );
         $action_delete = new TDataGridAction([$this, 'onDelete'],   ['key' => '{id}'] );
 

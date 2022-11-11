@@ -13,11 +13,11 @@ class PessoaList extends TPage
     private $loaded;
     private $filter_criteria;
     private static $database = 'erp';
-    private static $activeRecord = 'Pessoa';
+    private static $activeRecord = 'Cliente';
     private static $primaryKey = 'id';
     private static $formName = 'form_search_Pessoa';
     private $showMethods = ['onReload', 'onSearch', 'onRefresh', 'onClearFilters'];
-    private static $formTitle = '<i class="fas fa-user fa-fw nav-icon"></i> Pessoas';
+    private static $formTitle = '<i class="fas fa-user fa-fw nav-icon"></i> Cliente';
     private $limit = 10;
 
     use ListTrait;
@@ -88,32 +88,19 @@ class PessoaList extends TPage
         $column_id        = new TDataGridColumn('id', 'ID', 'center');
         $column_nome      = new TDataGridColumn('nome', 'Nome', 'left');
         $column_documento = new TDataGridColumn('documento', 'CPF/CNPJ', 'left');
-        $column_grupo     = new TDataGridColumn('{grupo_pessoa->nome}', 'Grupo', 'left');
-        $column_categoria = new TDataGridColumn('{categoria_pessoa}', 'Categoria', 'left');
-        $column_ativo     = new TDataGridColumn('ativo', 'Ativo', 'left');
+        $column_ativo     = new TDataGridColumn('celular', 'Celular', 'left');
 
-        $column_ativo->setTransformer( function($value, $object, $row) {
-            $class = ($value=='N') ? 'danger' : 'success';
-            $label = ($value=='N') ? 'Não' : 'Sim';
-            $div = new TElement('span');
-            $div->class="label label-{$class}";
-            $div->style="text-shadow:none; font-size:12px; font-weight:lighter";
-            $div->add($label);
-            return $div;
-        });
 
         $this->datagrid->addColumn( $column_id );
         $this->datagrid->addColumn( $column_nome );
-        $this->datagrid->addColumn( $column_grupo );
         $this->datagrid->addColumn( $column_documento );
-        $this->datagrid->addColumn( $column_categoria );
         $this->datagrid->addColumn( $column_ativo );
 
         $column_id->setAction(new TAction([$this, 'onReload']), ['order' => 'id']);
         $column_nome->setAction(new TAction([$this, 'onReload']), ['order' => 'nome']);
         $column_documento->setAction(new TAction([$this, 'onReload']), ['order' => 'documento']);
         // $column_login->setAction(new TAction([$this, 'onReload']), ['order' => 'login']);
-        $column_ativo->setAction(new TAction([$this, 'onReload']), ['order' => 'ativo']);
+        $column_ativo->setAction(new TAction([$this, 'onReload']), ['order' => 'celular']);
 
         $action_edit   = new TDataGridAction(['PessoaForm', 'onEdit'],   ['key' => '{id}'] );
         // $action_delete = new TDataGridAction([$this, 'onDelete'],   ['key' => '{id}'] );

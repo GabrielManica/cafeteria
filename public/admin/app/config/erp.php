@@ -1,7 +1,7 @@
 <?php
 return[
     'host' => "18.231.152.18",
-    'name' => "mydreamcloset",
+    'name' => "cafeteria",
     'user' => "postgres",
     'pass' => 'Inter2712@',
     'type' => "pgsql",

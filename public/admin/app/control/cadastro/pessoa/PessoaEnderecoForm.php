@@ -13,7 +13,7 @@ class PessoaEnderecoForm extends TPage
 {
     protected $form;
     private static $database = 'erp';
-    private static $activeRecord = 'PessoaEndereco';
+    private static $activeRecord = 'Endereco';
     private static $primaryKey = 'id';
     private static $formName = 'form_PessoaEndereco';
     private $showMethods = ['onEdit', 'onSave', 'onDelete'];
@@ -33,29 +33,23 @@ class PessoaEnderecoForm extends TPage
         $btn->class = 'btn btn-sm btn-success';
 
         $id               = new THidden('id');
-        $pessoa_id        = new THidden('pessoa_id');
+        $cliente_id        = new THidden('cliente_id');
         $cidade_id        = new THidden('cidade_id');
-        $cidade_descricao = new TEntry('cidade_descricao');
-        $endereco_tipo_id = new TDBCombo('endereco_tipo_id', 'erp', 'EnderecoTipo', 'id', 'nome', 'nome asc');
+        $cidade = new TEntry('cidade');
         $nome             = new TEntry('nome');
-        $principal        = new TCheckButton('principal');
         $cep              = new TEntry('cep');
-        $endereco         = new TEntry('endereco');
+        $endereco         = new TEntry('logradouro');
         $numero           = new TEntry('numero');
         $bairro           = new TEntry('bairro');
         $complemento      = new TEntry('complemento');
-        $ativo            = new TCheckButton('ativo');
-        $data_desativacao = new TEntry('data_desativacao');
 
-        $pessoa_id->setValue($param['pessoa_id']);
+        $cliente_id->setValue(isset($param['pessoa_id']) ? $param['pessoa_id']:'');
 
         $id->setEditable(FALSE);
-        $endereco_tipo_id->enableSearch();
 
-        $data_desativacao->setEditable(FALSE);
-        $endereco->setEditable(FALSE);
-        $bairro->setEditable(FALSE);
-        $cidade_descricao->setEditable(FALSE);
+        // $endereco->setEditable(FALSE);
+        // $bairro->setEditable(FALSE);
+        // $cidade_descricao->setEditable(FALSE);
 
         $nome->forceUpperCase();
         $endereco->forceUpperCase();
@@ -63,33 +57,10 @@ class PessoaEnderecoForm extends TPage
         $bairro->forceUpperCase();
         $complemento->forceUpperCase();
 
-        $principal->setIndexValue('S');
-        // $principal->setValue('S');
-        $principal->setUseSwitch(true, 'blue');
-
         $cep->setMask('99999-999', true);
 
-        $ativo->setIndexValue('S');
-        $ativo->setValue('S');
-        $ativo->setUseSwitch(true, 'blue');
+        // $cep->setExitAction(new TAction([$this,'onExitCep']));
 
-        $cep->setExitAction(new TAction([$this,'onExitCep']));
-
-        $row = $this->form->addFields(
-            [ new TLabel('Tipo', 'red'),       $endereco_tipo_id  ],
-            [ new TLabel('Principal', 'red'),  $principal         ],
-            [ new TLabel('Descrição', 'red'),  $nome              ],
-            [ new TLabel('Ativo', 'red'),      $ativo             ],
-            [ new TLabel('Data Desativação'),  $data_desativacao  ],
-        );
-
-        $row->layout = [
-            'col-6  col-sm-2',
-            'col-6  col-sm-1',
-            'col-12  col-sm-6',
-            'col-12  col-sm-1',
-            'col-12  col-sm-2',
-        ];
 
         $row = $this->form->addFields(
             [ new TLabel('CEP', 'red'),  $cep      ],
@@ -106,7 +77,7 @@ class PessoaEnderecoForm extends TPage
         ];
 
         $row = $this->form->addFields(
-            [ new TLabel('Cidade'),       $cidade_descricao  ],
+            [ new TLabel('Cidade'),       $cidade  ],
             [ new TLabel('Complemento'),  $complemento       ],
         );
 
@@ -118,7 +89,7 @@ class PessoaEnderecoForm extends TPage
         $row = $this->form->addFields(
             [ $cidade_id ],
             [ $id ],
-            [ $pessoa_id ],
+            [ $cliente_id ],
         );
 
         $row->layout = [
@@ -128,17 +99,13 @@ class PessoaEnderecoForm extends TPage
         ];
 
         $id->setSize('100%');
-        $endereco_tipo_id->setSize('100%');
         $nome->setSize('100%');
-        $principal->setSize('100%');
         $cep->setSize('100%');
         $endereco->setSize('100%');
         $numero->setSize('100%');
         $bairro->setSize('100%');
         $cidade_id->setSize('100%');
         $complemento->setSize('100%');
-        $ativo->setSize('100%');
-        $data_desativacao->setSize('100%');
 
         $this->datagrid = new TDataGrid;
         $this->datagrid->disableHtmlConversion();
@@ -153,57 +120,22 @@ class PessoaEnderecoForm extends TPage
         $this->datagrid->setHeight(320);
         $this->datagrid->datatable = 'true';
 
-        $column_endereco_tipo_id = new TDataGridColumn('{endereco_tipo->nome}', "Tipo", 'left');
-        $column_principal        = new TDataGridColumn('principal', "Principal", 'left');
-        $column_nome             = new TDataGridColumn('nome', "Descrição", 'left');
-        $column_ativo            = new TDataGridColumn('ativo', "Ativo", 'left');
         $column_cep              = new TDataGridColumn('cep', "CEP", 'left');
-        $column_endereco         = new TDataGridColumn('endereco', "Endereço", 'left');
+        $column_endereco         = new TDataGridColumn('logradouro', "Endereço", 'left');
         $column_bairro           = new TDataGridColumn('bairro', "Bairro", 'left');
 
-        $column_endereco_tipo_id->setAction(new TAction([$this, 'onReload']), ['order' => 'endereco_tipo_id']);
-        $column_principal->setAction(new TAction([$this, 'onReload']), ['order' => 'principal']);
-        $column_nome->setAction(new TAction([$this, 'onReload']), ['order' => 'nome']);
-        $column_ativo->setAction(new TAction([$this, 'onReload']), ['order' => 'ativo']);
         $column_cep->setAction(new TAction([$this, 'onReload']), ['order' => 'cep']);
         $column_endereco->setAction(new TAction([$this, 'onReload']), ['order' => 'endereco']);
         $column_bairro->setAction(new TAction([$this, 'onReload']), ['order' => 'bairro']);
 
-        $this->datagrid->addColumn($column_endereco_tipo_id);
-        $this->datagrid->addColumn($column_principal);
-        $this->datagrid->addColumn($column_nome);
-        $this->datagrid->addColumn($column_ativo);
         $this->datagrid->addColumn($column_cep);
         $this->datagrid->addColumn($column_endereco);
         $this->datagrid->addColumn($column_bairro);
 
-        $column_ativo->setTransformer( function($value, $object, $row) {
-            $class = ($value=='N') ? 'danger' : 'success';
-            $label = ($value=='N') ? 'Não' : 'Sim';
-            $div = new TElement('span');
-            $div->class="label label-{$class}";
-            $div->style="text-shadow:none; font-size:12px; font-weight:lighter";
-            $div->add($label);
-            return $div;
-        });
 
-        $column_principal->setTransformer( function($value, $object, $row) {
-            $class = ($value=='N') ? 'danger' : 'success';
-            $label = ($value=='N') ? 'Não' : 'Sim';
-            $div = new TElement('span');
-            $div->class="label label-{$class}";
-            $div->style="text-shadow:none; font-size:12px; font-weight:lighter";
-            $div->add($label);
-            return $div;
-        });
-
-        $column_cep->setTransformer( function($value, $object, $row) {
-            return mask('#####-###', $value);
-        });
-
-        $action_edit   = new TDataGridAction([$this, 'onEdit'],   ['key' => '{id}', 'pessoa_id' => '{pessoa_id}'] );
+        $action_edit   = new TDataGridAction([$this, 'onEdit'],   ['key' => '{id}', 'pessoa_id' => '{cliente_id}'] );
         $this->datagrid->addAction($action_edit, 'Editar',   'far:edit blue fa-fw');
-        $action_delete   = new TDataGridAction([$this, 'onDelete'],   ['key' => '{id}', 'pessoa_id' => '{pessoa_id}'] );
+        $action_delete   = new TDataGridAction([$this, 'onDelete'],   ['key' => '{id}', 'pessoa_id' => '{cliente_id}'] );
         $this->datagrid->addAction($action_delete, 'Delete', 'far:trash-alt red fa-fw');
         // create the datagrid model
         $this->datagrid->createModel();
@@ -293,7 +225,7 @@ class PessoaEnderecoForm extends TPage
 
                 if (empty($param['order']))
                 {
-                    $param['order'] = 'nome';
+                    $param['order'] = 'id';
                 }
 
                 if (empty($param['direction']))
@@ -304,7 +236,7 @@ class PessoaEnderecoForm extends TPage
                 $criteria->setProperties($param); // order, offset
                 $criteria->setProperty('limit', $this->limit);
 
-                $criteria->add(new TFilter('pessoa_id', '=', $param['pessoa_id']));
+                $criteria->add(new TFilter('cliente_id', '=', $param['pessoa_id']));
 
                 $objects = $repository->load($criteria, FALSE);
 
@@ -348,8 +280,6 @@ class PessoaEnderecoForm extends TPage
                 $key = $param['key'];
                 TTransaction::open(self::$database);
                 $object                   = new self::$activeRecord($key);
-                $object->cidade_descricao = "{$object->cidade->nome} ({$object->cidade->estado->sigla})";
-                $object->data_desativacao = _set_format_date($object->data_desativacao);
 
                 $this->form->setData($object);
 
@@ -399,18 +329,6 @@ class PessoaEnderecoForm extends TPage
             $this->form->validate();
             $data = $this->form->getData();
 
-            if($data->principal == '')
-            {
-                $data->principal = 'N';
-            }
-
-            if($data->ativo == '')
-            {
-                $data->ativo = 'N';
-            }
-
-            unset($data->data_desativacao);
-
             $object = new self::$activeRecord;
             $object->fromArray( (array) $data );
             $object->store();
@@ -423,7 +341,7 @@ class PessoaEnderecoForm extends TPage
 
             TTransaction::close();
 
-            new TMessage('info', 'Registro salvo com sucesso!', new TAction([$this, 'onShow'],['pessoa_id' => $data->pessoa_id]), 'Sucesso');
+            new TMessage('info', 'Registro salvo com sucesso!', new TAction([$this, 'onShow'],['pessoa_id' => $data->cliente_id]), 'Sucesso');
         }
         catch (Exception $e)
         {

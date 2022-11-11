@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <menu>
-  <menuitem label="Site">
-    <icon>fas:globe fa-fw</icon>
-    <menu>
-      <menuitem label="Banner">
-        <action>BannerList</action>
-        <icon>fas:chalkboard fa-fw</icon>
-      </menuitem>
-    </menu>
-  </menuitem>
   <menuitem label="Cadastros">
     <icon>far:edit fa-fw</icon>
     <menu>
@@ -19,23 +10,6 @@
             <action>PessoaList</action>
             <icon>fas:user fa-fw</icon>
           </menuitem>
-          <menuitem label="Configurações">
-            <icon>fas:users-cog fa-fw</icon>
-            <menu>
-              <menuitem label="Categorias Pessoa">
-                <action>CategoriaPessoaList</action>
-                <icon>fas:check-square fa-fw</icon>
-              </menuitem>
-              <menuitem label="Grupos Pessoa">
-                <action>GrupoPessoaList</action>
-                <icon>fas:users fa-fw</icon>
-              </menuitem>
-              <menuitem label="Tipos de Endereço">
-                <action>EnderecoTipoList</action>
-                <icon>fas:address-book fa-fw</icon>
-              </menuitem>
-            </menu>
-          </menuitem>
         </menu>
       </menuitem>
       <menuitem label="Produtos">
@@ -45,36 +19,6 @@
             <action>ProdutoList</action>
             <icon>fas:cube fa-fw</icon>
           </menuitem>
-          <menuitem label="Configurações">
-            <icon>fas:cogs fa-fw</icon>
-            <menu>
-              <menuitem label="Fabricante">
-                <action>FabricanteList</action>
-                <icon>fas:industry fa-fw</icon>
-              </menuitem>
-              <menuitem label="Linha">
-                <action>LinhaList</action>
-                <icon>fas:grip-vertical fa-fw</icon>
-              </menuitem>
-              <menuitem label="Unidade de Medida">
-                <action>UnidadeMedidaList</action>
-                <icon>fas:tape fa-fw</icon>
-              </menuitem>
-            </menu>
-          </menuitem>
-        </menu>
-      </menuitem>
-      <menuitem label="Localidades">
-        <icon>fas:globe fa-fw</icon>
-        <menu>
-          <menuitem label="Estados">
-            <action>EstadoList</action>
-            <icon>fas:map-marker-alt fa-fw</icon>
-          </menuitem>
-          <menuitem label="Cidades">
-            <action>CidadeList</action>
-            <icon>fas:map-marked-alt fa-fw</icon>
-          </menuitem>
         </menu>
       </menuitem>
     </menu>
@@ -82,19 +26,6 @@
   <menuitem label="Pedido">
     <icon>fas:clipboard-list fa-fw</icon>
     <menu>
-      <menuitem label="Pedido Entrada">
-        <icon>fas:clipboard-list fa-fw</icon>
-        <menu>
-          <menuitem label="Pedido Entrada">
-            <action>PedidoEntradaList</action>
-            <icon>fas:clipboard-list fa-fw</icon>
-          </menuitem>
-          <menuitem label="Consulta de Pedidos de Entrada">
-            <action>ConsultaPedidoEntradaList</action>
-            <icon>fas:search fa-fw</icon>
-          </menuitem>
-        </menu>
-      </menuitem>
       <menuitem label="Pedido Saída">
         <icon>fas:clipboard-list fa-fw</icon>
         <menu>
@@ -102,32 +33,7 @@
             <action>PedidoSaidaList</action>
             <icon>fas:clipboard-list fa-fw</icon>
           </menuitem>
-          <menuitem label="Consulta de Pedidos de Saída">
-            <action>ConsultaPedidoSaidaList</action>
-            <icon>fas:search fa-fw</icon>
-          </menuitem>
         </menu>
-      </menuitem>
-    </menu>
-  </menuitem>
-  <menuitem label="Consulta">
-    <icon>fas:search fa-fw</icon>
-    <menu>
-      <menuitem label="Consulta Valores">
-        <action>ConsultaValoresForm</action>
-        <icon>fas:dollar-sign fa-fw</icon>
-      </menuitem>
-      <menuitem label="Razão do Estoque">
-        <action>RazaoEstoqueList</action>
-        <icon>fas:cube fa-fw</icon>
-      </menuitem>
-      <menuitem label="Estoque">
-        <action>ConsultaEstoqueList</action>
-        <icon>fas:cubes fa-fw</icon>
-      </menuitem>
-      <menuitem label="Aniversariantes">
-        <action>ConsultaAniversariantesList</action>
-        <icon>fas:birthday-cake fa-fw</icon>
       </menuitem>
     </menu>
   </menuitem>

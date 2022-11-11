@@ -26,71 +26,29 @@ class PedidoSaidaForm extends TPage
         $this->form->setFormTitle( self::$formTitle );
 
         $id          = new TEntry('id');
-        $criteria = new TCriteria;
-        $criteria->add(new TFilter('id','in','(select pessoa_id from pessoa_categoria where categoria_pessoa_id = 4)'));
-        $criteria->add( new TFilter('ativo', '=', 'S') );
 
-        if(isset($param['pessoa_id']) && $param['pessoa_id'] != '')
-        {
-            $criteria->add( new TFilter('id', '=', "{$param['pessoa_id']}"),TExpression::OR_OPERATOR );
-        }
 
-        $pessoa_id           = new TDBCombo('pessoa_id', 'erp', 'Pessoa', 'id', 'nome','nome asc', $criteria );
-        $forma_pagamento_id  = new TDBCombo('forma_pagamento_id', 'erp', 'FormaPagamento', 'id', 'descricao' );
+        $pessoa_id           = new TDBCombo('cliente_id', 'erp', 'Cliente', 'id', 'nome','nome asc' );
         $data_pedido         = new TDate('data_pedido');
-        $percentual_desconto = new TNumeric('percentual_desconto', '2', ',', '.' );
-        $total_bruto         = new TNumeric('total_bruto', '2', ',', '.' );
-        $total_desconto      = new TNumeric('total_desconto', '2', ',', '.' );
-        $total_frete         = new TNumeric('total_frete', '2', ',', '.' );
-        $total_liquido       = new TNumeric('total_liquido', '2', ',', '.' );
-        $total_quantidade    = new TNumeric('total_quantidade', '0', '', '' );
-        $observacao          = new TText('observacao');
-        $pronta_entrega      = new TCombo('pronta_entrega');
+        $total_liquido       = new TNumeric('total_pedido', '2', ',', '.' );
 
         $id->setEditable(FALSE);
 
         $id->forceUpperCase();
         $pessoa_id->enableSearch();
-        $forma_pagamento_id->enableSearch();
 
         $data_pedido->setDatabaseMask('yyyy-mm-dd');
         $data_pedido->setMask('dd/mm/yyyy');
-
-        $total_bruto->setValue('0,00');
-        $total_bruto->setSize('100%');
-        $total_bruto->setEditable(FALSE);
-
-        $total_desconto->setValue('0,00');
-        $total_desconto->setSize('100%');
-        $total_desconto->setEditable(FALSE);
 
         $total_liquido->setValue('0,00');
         $total_liquido->setSize('100%');
         $total_liquido->setEditable(FALSE);
 
-        $total_quantidade->setValue('0,00');
-        $total_quantidade->setSize('100%');
-        $total_quantidade->setEditable(FALSE);
-
-        $percentual_desconto->setValue('0,00');
-        $percentual_desconto->setSize('100%');
-
-        $total_frete->setValue('0,00');
-        $total_frete->setSize('100%');
-
-        $pronta_entrega->setDefaultOption(false);
-        $pronta_entrega->setValue('N');
-        $pronta_entrega->setSize('100%');
-        $pronta_entrega->enableSearch();
-        $pronta_entrega->addItems(['N'=>'Não', 'S'=>'Sim']);
-
-        $observacao->setSize('100%', 100);
 
         $row1 = $this->form->addFields(
             [ new TLabel('Cliente', 'red'),         $pessoa_id          ],
-            [ new TLabel('Pronta Entrega', 'red'),  $pronta_entrega     ],
-            [ new TLabel('Forma Pagamento', 'red'), $forma_pagamento_id ],
             [ new TLabel('Data', 'red'),            $data_pedido        ],
+            [ new TLabel('Total'),    $total_liquido        ],
             [ new TLabel('ID'),                     $id                 ],
         );
 
@@ -102,43 +60,15 @@ class PedidoSaidaForm extends TPage
             'col-6   col-sm-1',
         ];
 
-        $row1 = $this->form->addFields(
-            [ new TLabel('% Desconto'),       $percentual_desconto  ],
-            [ new TLabel('Total Bruto'),      $total_bruto          ],
-            [ new TLabel('Total Desconto'),   $total_desconto       ],
-            [ new TLabel('Total Frete'),      $total_frete          ],
-            [ new TLabel('Total Líquido'),    $total_liquido        ],
-            [ new TLabel('Total Quantidade'), $total_quantidade     ],
-        );
-
-        $row1->layout = [
-            'col-6  col-sm-2',
-            'col-6  col-sm-2',
-            'col-6  col-sm-2',
-            'col-6  col-sm-2',
-            'col-6  col-sm-2',
-            'col-6  col-sm-2',
-        ];
-
-        $row3 = $this->form->addFields(
-            [ new TLabel('Observação'), $observacao ],
-        );
-
-        $row3->layout = [
-            'col-12  col-sm-12',
-        ];
 
         $id->setSize('100%');
         $pessoa_id->setSize('100%');
-        $forma_pagamento_id->setSize('100%');
         $data_pedido->setSize('100%');
 
         $this->form->addFields( [new TFormSeparator('<b>Adicionar Item no Pedido</b>') ] );
 
-        $criteria = new TCriteria();
-        $criteria->add(new TFilter('ativo', '=', 'S'));
-        $criteria->add(new TFilter('estoque', '>', '0'));
-        $produto_id    = new TDBCombo('produto_id', 'erp', 'Produto', 'id', '{id} - {referencia_fornecedor} - {nome} - {codigo_barras}', 'nome asc', $criteria );
+
+        $produto_id    = new TDBCombo('produto_id', 'erp', 'Produto', 'id', '{id} - {nome}', 'nome asc' );
         $quantidade    = new TNumeric('quantidade', '0', '', '' );
         $valor         = new TNumeric('valor', '2', ',', '.' );
         // $valor_bruto   = new TNumeric('valor_bruto', '2', ',', '.' );
@@ -217,14 +147,12 @@ class PedidoSaidaForm extends TPage
         $this->datagrid->datatable = 'true';
 
         // creates the datagrid columns
-        $column_referencia_fornecedor = new TDataGridColumn('referencia_fornecedor', 'Referência Fornecedor', 'center');
         $column_produto_id            = new TDataGridColumn('produto_id', 'Produto ID', 'center');
-        $column_produto_nome          = new TDataGridColumn('produto_nome', 'Produto', 'left');
-        $column_valor                 = new TDataGridColumn('valor', 'Valor', 'center');
+        $column_produto_nome          = new TDataGridColumn('{produto->nome}', 'Produto', 'left');
+        $column_valor                 = new TDataGridColumn('valor_produto', 'Valor', 'center');
         $column_quantidade            = new TDataGridColumn('quantidade', 'Quantidade', 'center');
-        $column_valor_liquido         = new TDataGridColumn('valor_liquido', 'Total', 'center');
+        $column_valor_liquido         = new TDataGridColumn('valor_produto', 'Total', 'center');
 
-        $this->datagrid->addColumn( $column_referencia_fornecedor );
         $this->datagrid->addColumn( $column_produto_id );
         $this->datagrid->addColumn( $column_produto_nome );
         $this->datagrid->addColumn( $column_valor );
@@ -236,7 +164,7 @@ class PedidoSaidaForm extends TPage
         });
 
         $column_valor_liquido->setTransformer( function($value, $object, $row) {
-            return _formata_numero($value, true);
+            return _formata_numero($object->quantidade * $object->valor_produto, true);
         });
 
         // $action_edit   = new TDataGridAction(['GrupoPessoaForm', 'onEdit'],   ['key' => '{id}'] );
@@ -268,8 +196,10 @@ class PedidoSaidaForm extends TPage
         if (isset($param['delete']) && $param['delete'] == 1) {
             try {
                 TTransaction::open(self::$database);
-                $object = new PedidoItem($param['key']);
-
+                $object = new PedidoProduto($param['key']);
+                $objectPedido = new Pedido($object->pedido_id);
+                $valor = $object->valor_produto;
+                $quantidade = $object->quantidade;
                 $pedido_id = $object->pedido_id;
 
                 $mensagem_success = 'Registro excluido com sucesso!';
@@ -277,6 +207,9 @@ class PedidoSaidaForm extends TPage
                 $mensagem_error = 'Impossível excluir o registro!';
 
                 $object->delete();
+
+                $objectPedido->total_pedido = $objectPedido->total_pedido - ($valor * $quantidade);
+                $objectPedido->store();
                 TTransaction::close();
 
                 new TMessage('info', $mensagem_success, new TAction(['PedidoSaidaForm', 'onEdit'],['key'=>$pedido_id]), 'Sucesso');
@@ -316,14 +249,12 @@ class PedidoSaidaForm extends TPage
 
            $produto = new Produto($param['produto_id']);
 
-           if($param['quantidade'] > $produto->estoque)
-           {
-                throw new Exception('Quantidade informada maior que no estoque! Quantidade em estoque: '. $produto->estoque);
-           }
-
             if(isset($param['id']) && $param['id'] != '')
             {
                 $object = new Pedido($param['id']);
+                $param['total_pedido'] = $object->total_pedido + _remove_mask_numeric($param['valor'])*_remove_mask_numeric($param['quantidade']);
+                $object->fromArray( (array) $param );
+                $object->store();
             }
             else
             {
@@ -340,35 +271,22 @@ class PedidoSaidaForm extends TPage
                     throw new Exception('Data é obrigatório!');
                 }
 
-                $param['tipo_pedido']         = 'S';
-                $param['percentual_desconto'] = _remove_mask_numeric($param['percentual_desconto']);
-                $param['total_bruto']         = _remove_mask_numeric($param['total_bruto']);
-                $param['total_desconto']      = _remove_mask_numeric($param['total_desconto']);
-                $param['total_frete']         = _remove_mask_numeric($param['total_frete']);
-                $param['total_liquido']       = _remove_mask_numeric($param['total_liquido']);
-                $param['total_quantidade']    = _remove_mask_numeric($param['total_quantidade']);
-                $param['data_pedido']         = _set_db_date($param['data_pedido']);
+
+                $param['total_pedido']    = _remove_mask_numeric($param['valor'])*_remove_mask_numeric($param['quantidade']);
+                $param['data_pedido']     = _set_db_date($param['data_pedido']);
 
                 $object = new self::$activeRecord;
                 $object->fromArray( (array) $param );
                 $object->store();
             }
 
-            $pedido_item = new PedidoItem();
+            $pedido_item = new PedidoProduto();
             $pedido_item->produto_id    = $param['produto_id'];
-            $pedido_item->valor_bruto   = _remove_mask_numeric($param['valor'])*_remove_mask_numeric($param['quantidade']);
-            $pedido_item->valor_liquido = _remove_mask_numeric($param['valor'])*_remove_mask_numeric($param['quantidade']);
             $pedido_item->pedido_id     = $object->id;
+            $pedido_item->valor_produto = _remove_mask_numeric($param['valor']);
             $pedido_item->quantidade    = _remove_mask_numeric($param['quantidade']);
-            $pedido_item->valor         = _remove_mask_numeric($param['valor']);
             $pedido_item->store();
 
-            $produto = new Produto($param['produto_id']);
-
-            if($produto->estoque <= $produto->estoque_minimo)
-            {
-                TToast::show('info', "Estoque atual do Produto {$produto->nome} abaixo do estoque mínimo {$produto->estoque_minimo}. Quantidade em estoque: {$produto->estoque}", 'bottom center');
-            }
 
             TScript::create("window.setTimeout(function(){
                 __adianti_load_page('index.php?class=PedidoSaidaForm&method=onEdit&register_state=false&key={$object->id}');
@@ -394,26 +312,8 @@ class PedidoSaidaForm extends TPage
             if(isset($param['produto_id']) && $param['produto_id'] != '')
             {
                 $produto = new Produto($param['produto_id']);
-                $forma_pagamento = new FormaPagamento($param['forma_pagamento_id']);
 
-                if($param['pronta_entrega'] == 'N' || $param['pronta_entrega'] == '')
-                {
-                    $object->valor         = _formata_numero($produto->preco_venda);
-
-                    if($forma_pagamento->parcelas > 1)
-                    {
-                        $object->valor         = _formata_numero($produto->preco_venda_prazo);
-                    }
-                }
-                else
-                {
-                    $object->valor         = _formata_numero($produto->preco_venda_pronta_entrega);
-
-                    if($forma_pagamento->parcelas > 1)
-                    {
-                        $object->valor         = _formata_numero($produto->preco_venda_pronta_entrega_prazo);
-                    }
-                }
+                $object->valor         = _formata_numero($produto->valor);
             }
             else
             {
@@ -474,7 +374,7 @@ class PedidoSaidaForm extends TPage
 
                 $this->form->setData($object);
 
-                $repository = new TRepository('PedidoItem');
+                $repository = new TRepository('PedidoProduto');
                 $criteria = new TCriteria;
                 $criteria->add(new TFilter('pedido_id','=',$object->id));
                 $params['order'] = 'id desc';
