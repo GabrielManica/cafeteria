@@ -1,5 +1,5 @@
 .user-login:hover{
-    color:#FF6AA0 !important;
+    color:red !important;
 }
 
 .single_product_details_area .single_product_desc .product-price {
@@ -17,11 +17,11 @@
 }
 
 .sub_linha_active{
-    color: #FF6AA0 !important;
+    color: red !important;
 }
 
 .product-topbar .nice-select .list .option.selected {
-    color: #FF6AA0;
+    color: red;
 }
 
 #slider {
@@ -47,7 +47,7 @@ a#scrollUp {
 }
 
 .footer_area .single_widget_area .footer_menu ul li a:hover, .footer_area .single_widget_area .footer_menu ul li a:focus {
-    color: #FF6AA0 !important;
+    color: red !important;
 }
 
 
@@ -80,12 +80,12 @@ a#scrollUp {
 }
 
 .rosa{
-    color: #FF6AA0 !important;
+    color: red !important;
     text-decoration: none !important;
 }
 
 .widget .catagories-menu .sub-menu li > a:hover {
-    color: #FF6AA0 !important;
+    color: red !important;
     text-decoration: none !important;
 }
 

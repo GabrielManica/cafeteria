@@ -18,7 +18,7 @@
                     <!-- Nav Start -->
                     <div class="classynav">
                         <ul>
-                            <li><a href="/">Início</a></li>
+                            {{--  <li><a href="/">Início</a></li>  --}}
                             <li><a href="/loja">Loja</a></li>
                             {{--  <li><a href="/contato">Contato</a></li>
                             <li><a href="/admin/">Área Restrita</a></li>  --}}

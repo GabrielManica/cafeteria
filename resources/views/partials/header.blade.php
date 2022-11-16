@@ -10,7 +10,7 @@
         <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
         <!-- Title  -->
-        <title>My Dream Closet</title>
+        <title>Cafeteria</title>
 
         <!-- Favicon  -->
         <link rel="shortcut icon" href="{{ URL::asset('images/My_Dream_logo_sem_fundo2.png') }}">

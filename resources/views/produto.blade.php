@@ -13,10 +13,10 @@
 
         <!-- Single Product Description -->
         <div class="single_product_desc clearfix">
-            <span>{{$produto->linha->nome}} / {{$produto->sub_linha->nome}}</span>
-            <h2 style="color: #FF6AA0">{{$produto->nome}}</h2>
+            {{--  <span>{{$produto->linha->nome}} / {{$produto->sub_linha->nome}}</span>  --}}
+            <h2 style="color: red">{{$produto->nome}}</h2>
             {{--  <p class="product-price"><span class="old-price">$65.00</span> $49.00</p>  --}}
-            <p class="product-price" style="color: black">R$ {{ number_format($produto->preco_venda_prazo, 2, ",", ".") }}</p>
+            <p class="product-price" style="color: black">R$ {{ number_format($produto->valor, 2, ",", ".") }}</p>
             <p class="product-desc">
                 {!! $produto->observacao_site !!}
             </p>

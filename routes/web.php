@@ -16,11 +16,7 @@ use App\Http\Controllers\ProdutoController;
 |
 */
 
-Route::get('/', function () {
-    return view('construction');
-});
-
-Route::get('/site', [HomeController::class, 'index'])->name('site');
+Route::get('/', [LojaController::class, 'index'])->name('/');
 
 Route::get('/loja', [LojaController::class, 'index'])->name('loja');
 

@@ -12,9 +12,9 @@
                         <!-- Footer Menu -->
                         <div class="footer_menu">
                             <ul>
-                                <li><a href="/">Início</a></li>
+                                {{--  <li><a href="/">Início</a></li>  --}}
                                 <li><a href="/loja">Loja</a></li>
-                                <li><a href="/contato">Contato</a></li>
+                                {{--  <li><a href="/contato">Contato</a></li>  --}}
                             </ul>
                         </div>
                     </div>
@@ -66,7 +66,7 @@
             <div class="row mt-5">
                 <div class="col-md-12 text-center">
                     <p>
-                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> Todos direitos reservados My Dream Closet
+                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> Todos direitos reservados Cafeteria
                     </p>
                 </div>
             </div>

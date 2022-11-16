@@ -1,7 +1,7 @@
 @extends('partials.main')
 @section('content')
     <!-- ##### Breadcumb Area Start ##### -->
-    <div class="welcome_area bg-img background-overlay d-none d-md-block d-lg-block" style="margin-top: 86px; opacity: 0.7; height: 270px;background-repeat: no-repeat; background-size: 100% 300px; background-image: url({{ URL::asset('images/banner_loja.png') }});">
+    {{--  <div class="welcome_area bg-img background-overlay d-none d-md-block d-lg-block" style="margin-top: 86px; opacity: 0.7; height: 270px;background-repeat: no-repeat; background-size: 100% 300px; background-image: url({{ URL::asset('images/banner_loja.png') }});">  --}}
 
     </div>
     <div class="welcome_area bg-img background-overlay d-md-none d-lg-none" style="margin-top: 86px; opacity: 0.7; height: 170px;background-repeat: no-repeat; background-size: 100% 170px; background-image: url({{ URL::asset('images/banner_loja.png') }});">
@@ -10,15 +10,15 @@
     <!-- ##### Breadcumb Area End ##### -->
 
     <!-- ##### Shop Grid Area Start ##### -->
-    <section class="shop_grid_area section-padding-80">
+    <section class="shop_grid_area section-padding-80" style="padding-top: 120px;">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-md-4 col-lg-3 d-none d-md-block d-lg-block">
+                <div class="col-12 col-md-2 col-lg-2 d-none d-md-block d-lg-block">
                     <div class="shop_sidebar_area">
 
                         <!-- ##### Single Widget ##### -->
                         <div class="widget price mb-50">
-                            <!-- Widget Title -->
+                            {{--  <!-- Widget Title -->
                             <h6 class="widget-title mb-30">Pesquisar</h6>
                             <!-- Widget Title 2 -->
                             <div class="row">
@@ -39,7 +39,7 @@
                                         </form>
                                     </div>
                                 </div>
-                            </div>
+                            </div>  --}}
                             {{--  <p class="widget-title2 mb-30">Price</p>
 
                             <div class="widget-desc">
@@ -55,7 +55,7 @@
                         </div>
 
                         <!-- ##### Single Widget ##### -->
-                        <div class="widget catagory mb-50">
+                        {{--  <div class="widget catagory mb-50">
                             <!-- Widget Title -->
                             <h6 class="widget-title mb-30">Categorias</h6>
 
@@ -79,7 +79,7 @@
                                     @endforeach
                                 </ul>
                             </div>
-                        </div>
+                        </div>  --}}
 
 
 
@@ -156,10 +156,10 @@
                                     </div>
 
                                     <!-- Widget Title -->
-                                    <h6 class="widget-title mb-30" style="margin-bottom: 15px !important;">Categorias</h6>
+                                    {{--  <h6 class="widget-title mb-30" style="margin-bottom: 15px !important;">Categorias</h6>  --}}
 
                                     <!--  Catagories  -->
-                                    <div class="catagories-menu">
+                                    {{--  <div class="catagories-menu">
                                         <ul id="menu-content2" class="menu-content collapse show" >
                                             <!-- Single Item -->
                                             <li><a href="/loja" class="sub_linha_active">TODOS</a></li>
@@ -177,7 +177,7 @@
                                                 </li>
                                             @endforeach
                                         </ul>
-                                    </div>
+                                    </div>  --}}
                                 </div>
                             </div>
                         </div>
@@ -194,7 +194,7 @@
                                         <p><span class="rosa">{{$total_produtos}}</span> Produtos Encontrados</p>
                                     </div>
                                     <!-- Sorting -->
-                                    <div class="product-sorting d-flex">
+                                    {{--  <div class="product-sorting d-flex">
                                         <p>Ordenar Por:</p>
                                         <form action="" method="get">
                                             @if ($pesquisa!='')
@@ -207,7 +207,7 @@
                                             </select>
                                             <input type="submit" class="d-none" value="">
                                         </form>
-                                    </div>
+                                    </div>  --}}
                                 </div>
                             </div>
                         </div>
@@ -236,11 +236,11 @@
 
                                         <!-- Product Description -->
                                         <div class="product-description">
-                                            <span>{{$p->linha->nome}} / {{$p->sub_linha->nome}}</span>
+                                            {{--  <span>{{$p->linha->nome}} / {{$p->sub_linha->nome}}</span>  --}}
 
-                                            <h4 style="color: #FF6AA0">{{$p->nome}}</h4>
+                                            <h4 style="color: red">{{$p->nome}}</h4>
 
-                                            <p class="product-price">R$ {{ number_format($p->preco_venda_prazo, 2, ",", ".") }}</p>
+                                            <p class="product-price">R$ {{ number_format($p->valor, 2, ",", ".") }}</p>
                                             {{--  <p class="product-price"><span class="old-price">$75.00</span> $55.00</p>  --}}
 
                                             <!-- Hover Content -->
