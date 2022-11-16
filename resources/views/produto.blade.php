@@ -1,19 +1,5 @@
 @extends('partials.main')
 @section('content')
-    @if ($mensagem!='')
-    <script>
-        Swal.fire({
-            allowOutsideClick: false,
-            allowEscapeKey: false,
-            title: 'Sucesso!',
-            html: "{{$mensagem}}",
-            icon: 'success',
-            confirmButtonText: 'OK',
-            confirmButtonColor: '#236BB0'
-        });
-    </script>
-    @endif
-
     <!-- ##### Single Product Details Area Start ##### -->
     <section class="single_product_details_area d-flex align-items-center">
 

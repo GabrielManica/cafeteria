@@ -17,15 +17,10 @@ use App\Http\Controllers\ProdutoController;
 */
 
 Route::get('/', [LojaController::class, 'index'])->name('/');
-
 Route::get('/loja', [LojaController::class, 'index'])->name('loja');
-
 Route::get('/loja/linha/{linha_id}/sublinha/{sub_linha_id}', [LojaController::class, 'categoria'])->name('categoria');
-
 Route::get('/loja/pesquisa', [LojaController::class, 'pesquisa'])->name('pesquisa');
-
 Route::get('/produto/{produto_id}', [ProdutoController::class, 'produto']);
+
 Route::post('/adicionar_produto', [ProdutoController::class, 'add_produto'])->name('add');
-// Route::get('/loja', function () {
-//     return view('shop');
-// });
+Route::post('/finalizar', [ProdutoController::class, 'finalizar'])->name('finalizar');

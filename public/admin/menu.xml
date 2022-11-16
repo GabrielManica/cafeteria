@@ -3,10 +3,10 @@
   <menuitem label="Cadastros">
     <icon>far:edit fa-fw</icon>
     <menu>
-      <menuitem label="Pessoas">
+      <menuitem label="Cliente">
         <icon>fas:user-friends fa-fw</icon>
         <menu>
-          <menuitem label="Pessoas">
+          <menuitem label="Cliente">
             <action>PessoaList</action>
             <icon>fas:user fa-fw</icon>
           </menuitem>

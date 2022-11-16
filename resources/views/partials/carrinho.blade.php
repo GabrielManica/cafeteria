@@ -29,18 +29,28 @@
 
             <!-- Cart Summary -->
             <div class="cart-amount-summary">
-
-                <h2>Total</h2>
-                <ul class="summary-table">
-                    @if (Session::get('total_valor_carrinho'))
-                        <li><span>total:</span> <span>R$ {{ number_format(Session::get('total_valor_carrinho'), 2, ",", ".") }}</span></li>
-                    @else
-                        <li><span>total:</span><span>R$ 0,00</span></li>
-                    @endif
-                </ul>
-                <div class="checkout-btn mt-100">
-                    <a href="checkout.html" class="btn btn-success">Comprar</a>
-                </div>
+                <form action="/finalizar" method="POST">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                    <div class="form-group" style="margin-top: -90px;">
+                        <label for="nome">Nome</label>
+                        <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite seu Nome">
+                    </div>
+                    <div class="form-group">
+                        <label for="nome">CPF</label>
+                        <input type="text" class="form-control" id="cpf" name="cpf" placeholder="Digite seu CPF">
+                    </div>
+                    <h2>Total</h2>
+                    <ul class="summary-table">
+                        @if (Session::get('total_valor_carrinho'))
+                            <li><span>total:</span> <span>R$ {{ number_format(Session::get('total_valor_carrinho'), 2, ",", ".") }}</span></li>
+                        @else
+                            <li><span>total:</span><span>R$ 0,00</span></li>
+                        @endif
+                    </ul>
+                    <div class="checkout-btn mt-100">
+                        <input type="submit" class="btn btn-success" value="Comprar">
+                    </div>
+                </form>
             </div>
         </div>
     </div>
