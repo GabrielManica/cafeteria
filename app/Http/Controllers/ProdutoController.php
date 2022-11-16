@@ -78,10 +78,15 @@ class ProdutoController extends Controller
             $total_carrinho = Session::get('total_carrinho');
             $total_carrinho = $total_carrinho + 1;
             Session::put('total_carrinho', $total_carrinho);
+
+            $total_valor_carrinho = Session::get('total_valor_carrinho');
+            $total_valor_carrinho = $total_valor_carrinho + $produto->valor;
+            Session::put('total_valor_carrinho', $total_valor_carrinho);
         }
         else
         {
             Session::put('total_carrinho', 1);
+            Session::put('total_valor_carrinho', $produto->valor);
         }
 
         if(Session::get('produtos_carinho')){
@@ -92,6 +97,7 @@ class ProdutoController extends Controller
         {
             $produtos[] = $produto;
         }
+
 
         Session::put('produtos_carinho', $produtos);
 

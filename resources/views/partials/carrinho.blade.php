@@ -3,7 +3,7 @@
 
         <!-- Cart Button -->
         <div class="cart-button">
-            <a href="#" id="rightSideCart"><img src="img/core-img/bag.svg" alt=""> <span>{{$total_carrinho}}</span></a>
+            <a href="#" id="rightSideCart"><img src="https://cafeteria.gbsolutions.com.br/img/core-img/bag.svg" alt=""> <span>{{$total_carrinho}}</span></a>
         </div>
 
         <div class="cart-content d-flex">
@@ -32,10 +32,14 @@
 
                 <h2>Total</h2>
                 <ul class="summary-table">
-                    <li><span>total:</span> <span>$232.00</span></li>
+                    @if (Session::get('total_valor_carrinho'))
+                        <li><span>total:</span> <span>R$ {{ number_format(Session::get('total_valor_carrinho'), 2, ",", ".") }}</span></li>
+                    @else
+                        <li><span>total:</span><span>R$ 0,00</span></li>
+                    @endif
                 </ul>
                 <div class="checkout-btn mt-100">
-                    <a href="checkout.html" class="btn essence-btn">check out</a>
+                    <a href="checkout.html" class="btn btn-success">Comprar</a>
                 </div>
             </div>
         </div>

@@ -38,7 +38,7 @@
                     {!! $produto->observacao_site !!}
                 </p>
                 <div class="checkout-btn mt-100">
-                    <input type="submit" class="btn btn-success" value="Comprar">
+                    <input type="submit" class="btn btn-success" value="Adicionar Carrinho">
                 </div>
             </form>
         </div>
