@@ -6,8 +6,8 @@
         <!-- Single Product Thumb -->
         <div class="single_product_thumb clearfix" style="margin-top: 100px;">
             <div class="product_thumbnail_slides owl-carousel">
-                <img src="https://mydreamcloset.com.br/admin/{{$produto->foto}}" alt="" style="height: 500px; width: 500px; margin-left: 40px;">
-                <img src="https://mydreamcloset.com.br/admin/{{$produto->foto}}" alt="" style="height: 500px; width: 500px; margin-left: 40px;">
+                <img src="https://cafeteria.gbsolutions.com.br/admin/{{$produto->foto}}" alt="" style="height: 500px; width: 500px; margin-left: 40px;">
+                <img src="https://cafeteria.gbsolutions.com.br/admin/{{$produto->foto}}" alt="" style="height: 500px; width: 500px; margin-left: 40px;">
             </div>
         </div>
 
