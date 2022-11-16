@@ -6,6 +6,7 @@
 <body>
     <!-- ##### Header Area Start ##### -->
     @yield('nav')
+    @yield('carrinho')
     <!-- ##### Header Area End ##### -->
 
     <!-- ##### Right Side Cart Area ##### -->

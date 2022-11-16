@@ -7,6 +7,7 @@ use App\Models\Produto;
 use App\Models\SubLinha;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 
 class ProdutoController extends Controller
 {
@@ -51,10 +52,49 @@ class ProdutoController extends Controller
         return $produto;
     }
 
-    public function produto($id)
+    public function produto($id, Request $request)
     {
         $produto = Produto::find($id);
 
-        return view('produto', compact('produto'));
+        $total_carrinho = Session::get('total_carrinho')?Session::get('total_carrinho'):0;
+        $mensagem       = '';
+
+        if(Session::get('mensagem'))
+        {
+            $mensagem = Session::get('mensagem');
+            Session::put('mensagem', null);
+        }
+
+        return view('produto', compact('produto', 'total_carrinho', 'mensagem'));
+    }
+
+    public function add_produto(Request $request)
+    {
+        $produto = Produto::find($request->produto_id);
+        Session::put('mensagem', 'Produto adiconado ao carrinho!');
+
+        if(Session::get('total_carrinho'))
+        {
+            $total_carrinho = Session::get('total_carrinho');
+            $total_carrinho = $total_carrinho + 1;
+            Session::put('total_carrinho', $total_carrinho);
+        }
+        else
+        {
+            Session::put('total_carrinho', 1);
+        }
+
+        if(Session::get('produtos_carinho')){
+            $produtos = Session::get('produtos_carinho');
+            $produtos[] = $produto;
+        }
+        else
+        {
+            $produtos[] = $produto;
+        }
+
+        Session::put('produtos_carinho', $produtos);
+
+        return redirect("/produto/".$request->produto_id);
     }
 }

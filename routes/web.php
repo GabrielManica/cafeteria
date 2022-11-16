@@ -24,7 +24,8 @@ Route::get('/loja/linha/{linha_id}/sublinha/{sub_linha_id}', [LojaController::cl
 
 Route::get('/loja/pesquisa', [LojaController::class, 'pesquisa'])->name('pesquisa');
 
-Route::get('/produto/{produto_id}', [ProdutoController::class, 'produto'])->name('produto');
+Route::get('/produto/{produto_id}', [ProdutoController::class, 'produto']);
+Route::post('/adicionar_produto', [ProdutoController::class, 'add_produto'])->name('add');
 // Route::get('/loja', function () {
 //     return view('shop');
 // });

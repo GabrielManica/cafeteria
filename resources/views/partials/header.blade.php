@@ -35,6 +35,7 @@
         <link rel="stylesheet" href="{{ URL::asset('OwlCarrousel/dist/assets/owl.theme.default.min.css') }}">
 
         <script src="https://kit.fontawesome.com/73933f87d5.js" crossorigin="anonymous"></script>
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.15.5/sweetalert2.all.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.15.5/sweetalert2.min.css">
     </head>
 @endsection

@@ -93,6 +93,11 @@ a#scrollUp {
     margin-top:5px;
 }
 
+.swal2-select
+{
+    display: none !important;
+}
+
 @media only screen and (max-width: 767px){
     .header_area .classy-navbar{
         height: 70px;

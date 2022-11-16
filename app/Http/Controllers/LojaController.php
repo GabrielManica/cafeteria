@@ -21,7 +21,9 @@ class LojaController extends Controller
 
         $pesquisa = '';
 
-        return view('shop', compact('order', 'pesquisa', 'total_produtos', 'produtos'));
+        $total_carrinho = isset($_SESSION['total_carrinho'])?$_SESSION['total_carrinho']:0;
+
+        return view('shop', compact('order', 'pesquisa', 'total_produtos', 'produtos', 'total_carrinho'));
     }
 
     public function pesquisa(Request $request)

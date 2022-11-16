@@ -74,8 +74,8 @@
             </nav>
 
             <!-- Header Meta Data -->
-            {{--  <div class="header-meta d-flex clearfix justify-content-end">
-                <!-- Search Area -->
+            <div class="header-meta d-flex clearfix justify-content-end">
+                {{--  <!-- Search Area -->
                 <div class="search-area">
                     <form action="#" method="post">
                         <input type="search" name="search" id="headerSearch" placeholder="Type for search">
@@ -91,12 +91,12 @@
                     <a class="user-login" href="/admin/">
                         <i style="font-size: 25px;" class="fa-solid fa-lock"></i>
                     </a>
-                </div>
+                </div>  --}}
                 <!-- Cart Area -->
                 <div class="cart-area">
-                    <a href="#" id="essenceCartBtn"><img src="img/core-img/bag.svg" alt=""> <span>3</span></a>
+                    <a href="#" id="essenceCartBtn"><img src="https://cafeteria.gbsolutions.com.br/img/core-img/bag.svg" alt=""> <span>{{$total_carrinho}}</span></a>
                 </div>
-            </div>  --}}
+            </div>
 
         </div>
     </header>
