@@ -18,7 +18,7 @@
 
                         <!-- ##### Single Widget ##### -->
                         <div class="widget price mb-50">
-                            {{--  <!-- Widget Title -->
+                            <!-- Widget Title -->
                             <h6 class="widget-title mb-30">Pesquisar</h6>
                             <!-- Widget Title 2 -->
                             <div class="row">
@@ -39,7 +39,7 @@
                                         </form>
                                     </div>
                                 </div>
-                            </div>  --}}
+                            </div>
                             {{--  <p class="widget-title2 mb-30">Price</p>
 
                             <div class="widget-desc">
@@ -194,7 +194,7 @@
                                         <p><span class="rosa">{{$total_produtos}}</span> Produtos Encontrados</p>
                                     </div>
                                     <!-- Sorting -->
-                                    {{--  <div class="product-sorting d-flex">
+                                    <div class="product-sorting d-flex">
                                         <p>Ordenar Por:</p>
                                         <form action="" method="get">
                                             @if ($pesquisa!='')
@@ -202,12 +202,12 @@
                                             @endif
                                             <select name="order" id="sortByselect" onChange="this.form.submit();">
                                                 <option value="nome" @if($order == 'nome') selected @endif>Alfabética</option>
-                                                <option value="preco_venda_prazo asc" @if($order == 'preco_venda_prazo asc') selected @endif>Menor Valor</option>
-                                                <option value="preco_venda_prazo desc" @if($order == 'preco_venda_prazo desc') selected @endif>Maior Valor</option>
+                                                <option value="valor asc" @if($order == 'valor asc') selected @endif>Menor Valor</option>
+                                                <option value="valor desc" @if($order == 'valor desc') selected @endif>Maior Valor</option>
                                             </select>
                                             <input type="submit" class="d-none" value="">
                                         </form>
-                                    </div>  --}}
+                                    </div>
                                 </div>
                             </div>
                         </div>

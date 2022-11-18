@@ -17,7 +17,7 @@
                                 <img src="https://cafeteria.gbsolutions.com.br/admin/{{$p->foto}}" class="cart-thumb" alt="">
                                 <!-- Cart Item Desc -->
                                 <div class="cart-item-desc">
-                                <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
+                                    <span class="product-remove" onclick="window.location.href = '/remove_item/{{$p->numero}}';"><i class="fa fa-close" aria-hidden="true"></i></span>
                                     <h6>{{$p->nome}}</h6>
                                     <p class="price">R$ {{ number_format($p->valor, 2, ",", ".") }}</p>
                                 </div>

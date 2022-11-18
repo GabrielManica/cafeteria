@@ -25,11 +25,7 @@ class ProdutoController extends Controller
     public function pesquisa($pesquisa, $order){
         $explode = explode(' ', $order);
         $explode[1] = isset($explode[1]) ? $explode[1] : 'asc';
-        $produto = Produto::where('ativo', 'S')->where('estoque', '>', 0)->where('nome', 'ilike' , "%{$pesquisa}%")->orderBy($explode[0], $explode[1])->get();
-        foreach ($produto as $p) {
-            $p->linha     = Linha::find($p->linha_id);
-            $p->sub_linha = SubLinha::find($p->sub_linha_id);
-        }
+        $produto = Produto::where('nome', 'ilike' , "%{$pesquisa}%")->orderBy($explode[0], $explode[1])->get();
         return $produto;
     }
 
@@ -62,6 +58,37 @@ class ProdutoController extends Controller
         $total_carrinho = Session::get('total_carrinho')?Session::get('total_carrinho'):0;
 
         return view('produto', compact('produto', 'total_carrinho'));
+    }
+
+    public function remove_item($id)
+    {
+        $produto = Produto::find(Session::get('produtos_carinho')[$id-1]->id);
+        Session::put('mensagem', ['type'=>'success', 'mensagem'=> 'Produto removido do carrinho!']);
+
+        if(Session::get('total_carrinho'))
+        {
+            $total_carrinho = Session::get('total_carrinho');
+            $total_carrinho = $total_carrinho - 1;
+            Session::put('total_carrinho', $total_carrinho);
+
+            $total_valor_carrinho = Session::get('total_valor_carrinho');
+            $total_valor_carrinho = $total_valor_carrinho - $produto->valor;
+            Session::put('total_valor_carrinho', $total_valor_carrinho);
+        }
+        else
+        {
+            Session::put('total_carrinho', 1);
+            Session::put('total_valor_carrinho', $produto->valor);
+        }
+
+        if(Session::get('produtos_carinho')){
+            $produtos = Session::get('produtos_carinho');
+            unset($produtos[$id-1]);
+        }
+
+        Session::put('produtos_carinho', $produtos);
+
+        return back();
     }
 
     public function finalizar(Request $request)
@@ -123,10 +150,12 @@ class ProdutoController extends Controller
 
         if(Session::get('produtos_carinho')){
             $produtos = Session::get('produtos_carinho');
+            $produto->numero = count($produtos) +1;
             $produtos[] = $produto;
         }
         else
         {
+            $produto->numero = 1;
             $produtos[] = $produto;
         }
 
