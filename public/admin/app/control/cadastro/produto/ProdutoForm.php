@@ -48,6 +48,8 @@ class ProdutoForm extends TPage
         $nome       = new TEntry('nome');
         $foto       = new TImageCropper('foto');
         $preco_custo                      = new TNumeric('valor', '2', ',', '.' );
+        $observacao       = new TText('observacao');
+
 
         $id->setEditable(FALSE);
 
@@ -66,6 +68,8 @@ class ProdutoForm extends TPage
         $preco_custo->setValue('0,00');
         $preco_custo->setSize('100%');
 
+        $observacao->setSize('100%', 100);
+
 
         $bcontainer_62827f23f7f48 = new BootstrapFormBuilder('bcontainer_62827f23f7f48');
         $this->bcontainer_62827f23f7f48 = $bcontainer_62827f23f7f48;
@@ -80,6 +84,14 @@ class ProdutoForm extends TPage
             'col-12  col-sm-6',
             'col-10  col-sm-5',
             'col-2   col-sm-1',
+        ];
+
+        $row = $bcontainer_62827f23f7f48->addFields(
+            [ new TLabel('Observação'),  $observacao       ],
+        );
+
+        $row->layout = [
+            'col-12  col-sm-12',
         ];
 
         $row1 = $this->form->addFields(

@@ -17,6 +17,7 @@ class Produto extends TRecord
         parent::addAttribute('nome');
         parent::addAttribute('valor');
         parent::addAttribute('foto');
+        parent::addAttribute('observacao');
 
     }
 

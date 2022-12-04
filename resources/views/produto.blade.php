@@ -21,7 +21,7 @@
                 {{--  <p class="product-price"><span class="old-price">$65.00</span> $49.00</p>  --}}
                 <p class="product-price" style="color: black">R$ {{ number_format($produto->valor, 2, ",", ".") }}</p>
                 <p class="product-desc">
-                    {!! $produto->observacao_site !!}
+                    {!! $produto->observacao !!}
                 </p>
                 <div class="checkout-btn mt-100">
                     <input type="submit" class="btn btn-success" value="Adicionar Carrinho">
